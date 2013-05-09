@@ -37,7 +37,9 @@ class HMA_SSO_Twitter extends HMA_SSO_Provider {
 		parent::set_user( $user );
 		
 		if ( $this->is_authenticated() ) {
-			$this->access_token = get_user_meta( $this->user->ID, '_twitter_oauth_token', true );
+			$this->access_token = array();
+			$this->access_token['oauth_token'] = get_user_meta( $this->user->ID, '_twitter_oauth_token', true );
+			$this->access_token['oauth_token_secret'] = get_user_meta( $this->user->ID, '_twitter_oauth_token_secret', true );
 			$this->client = new TwitterOAuth( $this->api_key ,  $this->consumer_secret, $this->access_token['oauth_token'], $this->access_token['oauth_token_secret']);
 		} else {
 			$this->client = new TwitterOAuth( $this->api_key, $this->consumer_secret );
