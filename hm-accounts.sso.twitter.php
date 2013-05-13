@@ -280,6 +280,8 @@ class HMA_SSO_Twitter extends HMA_SSO_Provider {
 		
 		update_user_meta( get_current_user_id(), '_twitter_access_token', $this->access_token );
 		update_user_meta( get_current_user_id(), '_twitter_uid', $info->id );
+
+		$this->update_user_twitter_information();
 		
 		hm_success_message( 'Successfully connected the Twitter account "' . $info->screen_name . '" with your profile.', 'update-user' );
 		
